@@ -15,5 +15,7 @@ namespace Test2.Models
         public DateTime AddedDate { get; set; }
         [Display(Name = "Release Date")] public DateTime ReleaseDate { get; set; }
         [Display(Name = "Number in Stock")] public byte NumberInStock { get; set; }
+
+        public byte NumberAvailable { get; set; }
     }
 }

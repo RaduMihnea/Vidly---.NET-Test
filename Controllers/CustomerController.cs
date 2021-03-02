@@ -24,9 +24,7 @@ namespace Test2.Controllers
         //GET: /Customer/Index
         public ViewResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
+            return View();
         }
 
         //GET: /Customer/Show/{id}

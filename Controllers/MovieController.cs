@@ -27,9 +27,10 @@ namespace Test2.Controllers
         //GET: Movies
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
 
-            return View(movies);
+            return View("ReadOnlyList");
         }
 
         public ViewResult Show(int id)
@@ -38,7 +39,8 @@ namespace Test2.Controllers
 
             return View(movie);
         }
-
+        
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ViewResult New()
         {
             var genres = _context.Genres.ToList();
@@ -51,6 +53,7 @@ namespace Test2.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.Single(m => m.Id == id);
@@ -68,6 +71,7 @@ namespace Test2.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public RedirectToRouteResult Save(Movie movie)
         {
             if (movie.Id == 0)
