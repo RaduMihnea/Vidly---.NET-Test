@@ -7,6 +7,7 @@ namespace Test2.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<Test2.Models.ApplicationDbContext>
     {
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
