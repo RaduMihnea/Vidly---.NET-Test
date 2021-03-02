@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Test2.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Customers</h2>
+<p>
+    @Html.ActionLink("New Movie", "Create", "Customer", new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Membership Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>@customer.Id</td>
+            <td>@Html.ActionLink(customer.Name, "Edit", "Customer", new {id = customer.Id}, null)</td>
+            <td>@customer.MembershipType.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
